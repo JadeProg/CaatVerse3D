@@ -1,0 +1,282 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+canvas {
+  touch-action: none;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #ffd6a5 0%,
+    #ffb07c 30%,
+    #f28482 58%,
+    #c97b63 78%,
+    #6d4c41 100%
+  );
+}
+
+.sunset-canvas {
+  background: transparent !important;
+}
+
+/* Header */
+
+.header {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.header-logo {
+  width: 280px;
+  max-width: 55vw;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 6px;
+}
+
+.header p {
+  font-size: 14px;
+  text-align: center;
+  padding: 7px 16px;
+  color: rgba(72, 43, 22, 0.9);
+  background: rgba(255, 241, 210, 0.62);
+  border: 1px solid rgba(96, 56, 28, 0.2);
+  border-radius: 999px;
+  backdrop-filter: blur(5px);
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  box-shadow: 0 4px 14px rgba(86, 49, 24, 0.12);
+}
+
+/* Overlay do card */
+
+.curiosity-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(70, 56, 38, 0.28);
+  backdrop-filter: blur(6px);
+}
+
+/* Card estilo página/livro */
+
+.curiosity-card {
+  position: relative;
+  width: 430px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 48px);
+  padding: 28px 30px 32px;
+  border-radius: 18px;
+  border: 3px solid #7a5a36;
+  background:
+    radial-gradient(circle at top left, rgba(255, 248, 220, 0.85), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(181, 137, 79, 0.16), transparent 38%),
+    linear-gradient(180deg, #f6e8c4 0%, #efd8a7 55%, #e1bd7f 100%);
+  box-shadow:
+    0 18px 38px rgba(49, 33, 18, 0.28),
+    8px 10px 0 rgba(102, 76, 45, 0.35);
+  color: #4b341f;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.curiosity-card::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(122, 90, 54, 0.22);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+.curiosity-card::after {
+  content: "";
+  position: absolute;
+  right: -42px;
+  bottom: -42px;
+  width: 165px;
+  height: 165px;
+  background: rgba(140, 102, 57, 0.09);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.curiosity-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Botão X */
+
+.curiosity-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 3px solid #6f5332;
+  background: rgba(255, 245, 214, 0.95);
+  color: #5b4025;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+
+.curiosity-close:hover {
+  background: rgba(244, 225, 183, 0.98);
+  transform: scale(1.05);
+}
+
+/* Imagem do card */
+
+.curiosity-image {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  margin: 44px 0 4px 0;
+  border: 2px solid rgba(106, 74, 43, 0.45);
+  box-shadow: 0 8px 18px rgba(73, 49, 28, 0.18);
+  background: rgba(255, 247, 220, 0.5);
+}
+
+/* Textos */
+
+.curiosity-card h2 {
+  margin-bottom: 18px;
+  padding-right: 32px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 38px;
+  line-height: 1.1;
+  color: #4a311c;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.curiosity-card p {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgba(76, 52, 32, 0.9);
+  font-weight: 500;
+  letter-spacing: 0.15px;
+  margin-bottom: 30px;
+}
+
+/* Botão fechar */
+
+.curiosity-next {
+  min-width: 160px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 10px;
+  border: 3px solid #6a4a2b;
+  background: linear-gradient(180deg, #f7e9c5 0%, #edd7a4 100%);
+  color: #4a311c;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 rgba(88, 60, 34, 0.45);
+  transition: 0.2s ease;
+}
+
+.curiosity-next:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #fbefd2 0%, #f0dcaf 100%);
+}
+
+/* Responsivo */
+
+@media (max-width: 570px) {
+  .header {
+    top: 8px;
+  }
+
+  .header-logo {
+    width: 190px;
+    max-width: 70vw;
+  }
+
+  .header p {
+    font-size: 12px;
+    padding: 6px 12px;
+    max-width: 90vw;
+  }
+
+  .curiosity-card {
+    width: 340px;
+    max-height: calc(100vh - 32px);
+    padding: 22px 22px 26px;
+  }
+
+  .curiosity-image {
+    height: 125px;
+    margin: 44px 0 22px 0;
+  }
+
+  .curiosity-card h2 {
+    font-size: 30px;
+    line-height: 1.1;
+  }
+
+  .curiosity-card p {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .curiosity-next {
+    min-width: 140px;
+    height: 44px;
+    font-size: 13px;
+  }
+}
+.curiosity-image-bird {
+  object-fit: contain;
+  object-position: center;
+  background: rgba(255, 247, 220, 0.9);
+}
+.curiosity-image-tree {
+  height: 135px;
+  object-fit: contain;
+  object-position: center;
+  background: rgba(255, 247, 220, 0.9);
+}
