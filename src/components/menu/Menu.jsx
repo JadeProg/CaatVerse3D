@@ -10,7 +10,7 @@ export function Menu({ onStart }) {
         <div className='menu'>
             <div className="container-menu">
                 <img 
-                    src="/logo-caatverse.png" 
+                    src={`${import.meta.env.BASE_URL}logo-caatverse.png`}
                     alt="CaatVerse" 
                     className="header-logo" 
                 />
@@ -31,8 +31,7 @@ export function Menu({ onStart }) {
 
                 {!isLoaded && (
                     <p className="loading-message">
-                        As cenas 3D podem demorar um pouco para carregar.
-                        Por favor, aguarde enquanto preparamos sua experiência.
+                        As cenas 3D podem demorar um pouco para carregar. Por favor, aguarde enquanto preparamos sua experiência.
                     </p>
                 )}
             </div>

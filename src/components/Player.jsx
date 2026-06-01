@@ -19,7 +19,7 @@ export function Player() {
     const unlockAudio = () => {
       if (audioUnlocked.current) return;
 
-      footstepSound.current = new Audio("/Steps.mp3");
+      footstepSound.current = new Audio(`${import.meta.env.BASE_URL}Steps.mp3`);
       footstepSound.current.loop = true;
       footstepSound.current.volume = 0.17;
       audioUnlocked.current = true;

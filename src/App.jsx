@@ -30,7 +30,9 @@ const presets = {
 }
 
 function BackgroundMusic({ started }) {
-  const audioRef = useRef(new Audio('/Instrumental.mp3'))
+  const audioRef = useRef(
+  new Audio(`${import.meta.env.BASE_URL}Instrumental.mp3`)
+)
 
   useEffect(() => {
     if (started) {

@@ -8,43 +8,41 @@ import { useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
+const avatarPath = `${import.meta.env.BASE_URL}Avatar.glb`
+
 export function Avatar({ animation, ...props }) {
   const group = React.useRef()
-  const { scene, animations } = useGLTF('/Avatar.glb')
+  const { scene, animations } = useGLTF(avatarPath)
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const { actions } = useAnimations(animations, group)
 
-
   useEffect(() => {
-
-    const idle = actions['NlaTrack_Armature'];
-    const run = actions['NlaTrack.001_Armature'];
+    const idle = actions['NlaTrack_Armature']
+    const run = actions['NlaTrack.001_Armature']
 
     if (!run || !idle) return
 
+    idle.play()
+    run.play().setEffectiveTimeScale(1.3)
 
-    idle.play();
-    run.play().setEffectiveTimeScale(1.3);
-
-    if (animation === "run") {
-      run.enabled = true;
-      run.reset().fadeIn(0.2);
-      idle.fadeOut(0.2);
+    if (animation === 'run') {
+      run.enabled = true
+      run.reset().fadeIn(0.2)
+      idle.fadeOut(0.2)
     } else {
-      idle.enabled = true;
-      idle.reset().fadeIn(0.2);
+      idle.enabled = true
+      idle.reset().fadeIn(0.2)
       run.fadeOut(0.2)
     }
   }, [animation, actions])
 
   useEffect(() => {
     Object.values(materials).forEach((material) => {
-      material.roughness = 0.5;
-      material.metalness = 0;
-      material.needsUpdate = true;
-    });
-
+      material.roughness = 0.5
+      material.metalness = 0
+      material.needsUpdate = true
+    })
   }, [materials])
 
   return (
@@ -52,11 +50,17 @@ export function Avatar({ animation, ...props }) {
       <group name="Scene">
         <group name="Armature">
           <primitive object={nodes.Root} />
-          <skinnedMesh name="tripo_node_909a5ed3-7bd8-47ab-ba9e-cb775859e14b" geometry={nodes['tripo_node_909a5ed3-7bd8-47ab-ba9e-cb775859e14b'].geometry} material={materials['tripo_mat_909a5ed3-7bd8-47ab-ba9e-cb775859e14b']} skeleton={nodes['tripo_node_909a5ed3-7bd8-47ab-ba9e-cb775859e14b'].skeleton} castShadow />
+          <skinnedMesh
+            name="tripo_node_909a5ed3-7bd8-47ab-ba9e-cb775859e14b"
+            geometry={nodes['tripo_node_909a5ed3-7bd8-47ab-ba9e-cb775859e14b'].geometry}
+            material={materials['tripo_mat_909a5ed3-7bd8-47ab-ba9e-cb775859e14b']}
+            skeleton={nodes['tripo_node_909a5ed3-7bd8-47ab-ba9e-cb775859e14b'].skeleton}
+            castShadow
+          />
         </group>
       </group>
     </group>
   )
 }
 
-useGLTF.preload('/Avatar.glb')
+useGLTF.preload(avatarPath)
