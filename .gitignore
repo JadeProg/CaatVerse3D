@@ -23,6 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# 3D models grandes
-public/*.glb
-*.glb
+# 3D model grande que fica no Cloudflare R2
+public/Mapa.glb
+public/Mapa-webp.glb
+Mapa.glb
+Mapa-webp.glb

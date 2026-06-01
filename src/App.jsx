@@ -81,7 +81,11 @@ function App() {
       <BackgroundMusic started={started} />
 
       <div className="header">
-        <img src="/logo-caatverse.png" alt="CaatVerse" className="header-logo" />
+        <img 
+          src={`${import.meta.env.BASE_URL}logo-caatverse.png`} 
+          alt="CaatVerse" 
+          className="header-logo" 
+        />
         <p>Explore a experiência usando seu teclado (W, A, S, D) ou joystick</p>
       </div>
 
