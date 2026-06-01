@@ -8,7 +8,7 @@ import { useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
-const avatarPath = `${import.meta.env.BASE_URL}Avatar.glb`
+const avatarPath = "https://pub-9696cc5ff3e74f1398157138d0c7d88a.r2.dev/Avatar.glb"
 
 export function Avatar({ animation, ...props }) {
   const group = React.useRef()
