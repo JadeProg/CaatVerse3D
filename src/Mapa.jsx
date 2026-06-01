@@ -7,8 +7,10 @@ import React, { useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { RigidBody, MeshCollider } from '@react-three/rapier'
 
+const MAP_URL = "https://pub-9696cc5ff3e74f1398157138d0c7d88a.r2.dev/Mapa.glb"
+
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/Mapa.glb')
+  const { nodes, materials } = useGLTF(MAP_URL)
   useEffect(() => {
   const glassMaterials = [
     materials['Vidro.001'],
@@ -304,7 +306,7 @@ export function Model(props) {
   )
 }
 export function ChaoCollider() {
-  const { nodes, materials } = useGLTF('/Mapa.glb')
+  const { nodes, materials } = useGLTF(MAP_URL)
 
   return (
     <RigidBody
@@ -322,4 +324,4 @@ export function ChaoCollider() {
     </RigidBody>
   )
 }
-useGLTF.preload('/Mapa.glb')
+useGLTF.preload(MAP_URL)
